@@ -1,15 +1,16 @@
-// db.js
-
+require('dotenv').config();
 const mongoose = require('mongoose');
-
-async function connectToMongoDB() {
-    try {
-        await mongoose.connect('mongodb://localhost:27017/inshare');
-        console.log('Connected to MongoDB');
-    } catch (error) {
-        console.error('Error connecting to MongoDB:', error);
-        throw new Error('Could not connect to MongoDB');
-    }
+function connectDB() {
+    // Database connection 🥳
+    mongoose.connect(process.env.MONGO_CONNECTION_URL, { useNewUrlParser: true, useCreateIndex:true, useUnifiedTopology: true, useFindAndModify : true });
+    const connection = mongoose.connection;
+    connection.once('open', () => {
+        console.log('Database connected 🥳🥳🥳🥳');
+    }).catch(err => {
+        console.log('Connection failed ☹️☹️☹️☹️');
+    });
 }
 
-module.exports = connectToMongoDB;
+// mIAY0a6u1ByJsWWZ
+
+module.exports = connectDB;
