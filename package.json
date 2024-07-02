@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon server",
     "serve": "node server",
-    "start": "node server.js",
+    "start": "node index.js",
     "build": "npm install"
   },
   "dependencies": {
